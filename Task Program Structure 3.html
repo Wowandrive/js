@@ -1,0 +1,28 @@
+<script>
+var size = 8;
+var prevChar = " ";
+var line = "";
+var newStr = ""
+
+//Create one line
+for (var i = 0; i < size; i++) {
+	if ( prevChar == " "){
+//		line += "#"
+		prevChar = "#"
+	} else {
+//		line += " "
+		prevChar = " "
+	}
+	line += prevChar
+}
+
+//Create Chessboard
+for (var i = 0; i < size; i++) {
+	for (j = line.length - 1; j >= 0; j--) { 
+	        newStr += line.charAt(j); 
+	} 
+	console.log(newStr);
+	line = newStr
+	newStr = ""
+}
+</script>
