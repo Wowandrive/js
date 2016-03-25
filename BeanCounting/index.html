@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="libs.js"></script>
+ 
+</head>
+<body>
+
+  <script>
+
+    //count charachter (ch) in string (string)
+    function countChar(string, ch) {
+	var count = 0;
+        for(var i=0; i<string.length; i++){
+		if ( string.charAt(i) == ch ){
+			count++;
+		}
+	}
+	return count;
+    }
+
+    //count charachter "B" in string (string)
+    function countBs(string) {
+	return countChar(string, "B");
+    }
+
+  console.log(countBs("BBC")); // → 2
+  console.log(countChar("kakkerlak", "k")); // → 4
+    
+  </script>
+
+   <script src="test.js"></script>
+</body>
+</html>
