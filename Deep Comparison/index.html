@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="libs.js"></script>
+ 
+</head>
+<body>
+
+  <script>
+
+function deepEqual(a, b) {
+
+	//comparing prototypes
+	if ( a == b) {
+		return true;
+	}
+
+	//loop over an object�s properties.
+	for (var name in a){
+
+		//check types
+		if (typeof a[name] !== typeof b[name]) {
+	            return false;
+        	}
+
+		if ( typeof a[name] == "object" ) {
+			deepEqual(a[name], b[name]);
+		} else
+		{
+			if (a[name] == b[name]) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+ 
+}
+
+var obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// → true
+
+  </script>
+
+   <script src="test.js"></script>
+</body>
+</html>
