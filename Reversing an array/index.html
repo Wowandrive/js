@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="libs.js"></script>
+ 
+</head>
+<body>
+
+  <script>
+
+function reverseArray(array) {
+ 	var arrayNew = [];
+	for(i = array.length - 1; i >= 0; i--){
+		//add element to the new array
+		arrayNew.push( array[i] );
+	}
+	return arrayNew;
+}
+
+function reverseArrayInPlace(array) {
+	var i = 0;
+    var j = array.length - 1;
+
+    while (i < j) {
+        var tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+
+        i++;
+        j--;
+    }
+}
+
+console.log(reverseArray(["A", "B", "C"]));
+// → ["C", "B", "A"];
+var arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+// → [5, 4, 3, 2, 1]
+
+  </script>
+
+   <script src="test.js"></script>
+</body>
+</html>
