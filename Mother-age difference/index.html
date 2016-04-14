@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="libs.js"></script>
+  <script src="ancestry.js"></script>
+</head>
+<body>
+
+  <script>
+
+var ancestry = JSON.parse(ANCESTRY_FILE);
+function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
+
+var differences = [];
+var _bornChildren;
+var _bornMother;
+var _motherName;
+
+for( var tmpName in byName){
+
+	_bornChildren = byName[tmpName].born;
+	_motherName = byName[tmpName].mother;
+	_motherObj = byName[_motherName];
+
+	//if tmpName has monter in the list
+	if (typeof(_motherObj) != "undefined"){
+		_bornMother = _motherObj.born;
+		//add difference between mother and kid to the array
+		differences.push(_bornChildren - _bornMother);
+	}
+
+}
+
+
+console.log(average(differences)); // → 31.2
+
+  </script>
+
+   <script src="test.js"></script>
+</body>
+</html>
