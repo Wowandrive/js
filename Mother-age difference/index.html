@@ -21,24 +21,23 @@ ancestry.forEach(function(person) {
 });
 
 var differences = [];
-var _bornChildren;
-var _bornMother;
-var _motherName;
 
-for( var tmpName in byName){
-
-	_bornChildren = byName[tmpName].born;
-	_motherName = byName[tmpName].mother;
-	_motherObj = byName[_motherName];
-
-	//if tmpName has monter in the list
-	if (typeof(_motherObj) != "undefined"){
-		_bornMother = _motherObj.born;
-		//add difference between mother and kid to the array
-		differences.push(_bornChildren - _bornMother);
+//map, kid.born - mother.born
+differences = ancestry.map(function(person){
+	//filter, get mother obj.
+	var kkk = ancestry.filter(function(person_1) {
+		return person_1.name == person.mother;
+	})
+	
+	//if mother is found	
+	if (kkk.length > 0) {
+		return person.born - kkk[0].born;
 	}
+	
+})
 
-}
+//clear undefinied values
+differences = differences.filter(function(n){ return n != undefined }); 
 
 
 console.log(average(differences)); // → 31.2
