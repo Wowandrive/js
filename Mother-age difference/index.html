@@ -22,23 +22,15 @@ ancestry.forEach(function(person) {
 
 var differences = [];
 
-//map, kid.born - mother.born
-differences = ancestry.map(function(person){
-	//filter, get mother obj.
-	var kkk = ancestry.filter(function(person_1) {
-		return person_1.name == person.mother;
-	})
-	
-	//if mother is found	
-	if (kkk.length > 0) {
-		return person.born - kkk[0].born;
-	}
-	
+//find users with mother in the list
+var tmp = ancestry.filter(function(person) {
+	return byName[person.mother] != null;
 })
 
-//clear undefinied values
-differences = differences.filter(function(n){ return n != undefined }); 
-
+//map, kid.born - mother.born
+differences = tmp.map(function(person){
+	return person.born - byName[person.mother].born;
+})
 
 console.log(average(differences)); // → 31.2
 
