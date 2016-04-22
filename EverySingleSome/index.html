@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="libs.js"></script>
+ 
+</head>
+<body>
+
+  <script>
+
+function every(array, predicate) {
+	for(var i = 0; i < array.length; i++){
+		if(predicate(array[i])){
+			if( i == array.length - 1){
+				//all values are the same and end of the array
+				return true;
+			}
+		} else {
+			return false;
+		}
+
+	}
+}
+
+function some(array, predicate) {
+	for(var i = 0; i < array.length; i++){
+		if (predicate(array[i])){
+			return true
+		} else {
+			if( i == array.length - 1){
+				//end of the array and didn't find value
+				return false;
+			}
+		}
+
+	}
+
+}
+
+console.log(every([NaN, NaN, NaN], isNaN)); // → true
+console.log(every([NaN, NaN, 4], isNaN)); // → false
+console.log(some([NaN, 3, 4], isNaN)); // → true
+console.log(some([2, 3, 4], isNaN)); // → false
+
+  </script>
+
+   <script src="test.js"></script>
+</body>
+</html>
