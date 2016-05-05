@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="libs.js"></script>
+</head>
+<body>
+
+  <script>
+
+
+//Constructor ArraySeq
+ArraySeq = function(array){
+	this.array = array;
+}
+
+//Constructor RangeSeq
+function RangeSeq(start, end){
+	this.start = start;
+	this.end = end;
+}
+
+//General function LogFive for different Seq
+function logFive( obj ){
+	for (var i = 0; obj != null && i < 5; i++) {
+		//Print current element
+		console.log( obj.current() );
+		//Update/restructure obj without 'current' element
+		obj = obj.restructure();
+	}
+}
+
+//firts/current array element
+ArraySeq.prototype.current = function(){
+	return this.array[0];
+}
+
+//Array restructure
+ArraySeq.prototype.restructure = function(){
+	var newArray = this.array.slice(1);
+	if ( newArray.length == 0 ){
+		return null;
+	} else {
+		return new ArraySeq(newArray);		
+	}
+}
+
+//Range first element
+RangeSeq.prototype.current = function(){
+	return this.start;
+}
+
+//Range restructure
+RangeSeq.prototype.restructure = function(){
+	if(this.start + 1 > this.end){
+		return null;
+	} else {
+		return new RangeSeq(this.start + 1 , this.end);
+	}
+}
+
+		
+logFive(new ArraySeq([1, 2]));
+// → 1
+// → 2
+logFive(new RangeSeq(100, 1000));
+// → 100
+// → 101
+// → 102
+// → 103
+// → 104
+
+  </script>
+
+   <script src="test.js"></script>
+</body>
+</html>
