@@ -1,0 +1,14 @@
+<!doctype html>
+
+<input type="text">
+<script>
+  var field = document.querySelector("input");
+  // code
+  addEventListener("keydown", function(event) {
+  	//Q = 81, W=87, X = 88
+    if ((event.keyCode == 81) | (event.keyCode == 88) | (event.keyCode == 87)){
+    	event.preventDefault();
+    }
+  });
+ 
+</script>
