@@ -1,0 +1,89 @@
+<!doctype html>
+<script src="15_game.js"></script>
+<script src="game_levels.js"></script>
+<script src="16_canvas.js"></script>
+
+<canvas width="800" height="500"></canvas>
+<script>
+  var cx = document.querySelector("canvas").getContext("2d");
+
+ rapezoid(50, 50, 70, 10, 70, 100);
+ diamond(170, 20, 40, Math.PI / 4);
+ zigzagging(300,20, 400,35, 10);
+ spiral(500, 80, 60, Math.PI / 20, 0.15 );
+ star(700, 80, 60, 50, Math.PI / 14 );
+
+//A(x,y), B(x,y)
+//lh - lingth head
+//lb - lingth bottom
+ function rapezoid(A_x, A_y, B_x, B_y, lh, lb){
+	cx.beginPath();
+	cx.moveTo(A_x , A_y); //A
+	cx.lineTo(B_x, B_y); //line AB
+	cx.lineTo(B_x + lh, B_y); //line BC
+	cx.lineTo(A_x + lb, A_y); //line CD
+	cx.closePath(); //line AD
+	cx.stroke(); 	
+ }
+
+ //A(x,y)
+ //L - length
+ //R - rotate
+ function diamond(A_x , A_y, L , R ){
+ 	cx.beginPath();
+	cx.translate(A_x + L  , A_y + L);
+	cx.rotate(R);
+    cx.fillStyle = "red";
+    cx.fillRect(-L, -L, L, L);
+	cx.resetTransform();
+ }
+
+//A(x,y), B(x,y)
+//lines = count
+function zigzagging( A_x , A_y, B_x , B_y, lines){
+	var h = B_y - A_y;
+	var tempH = h
+	cx.beginPath();
+	cx.moveTo( A_x, A_y );
+	for( var i=0; i<lines; i++){
+		cx.lineTo( B_x, A_y + tempH );
+		tempH = tempH + h;
+		cx.lineTo( A_x, A_y + tempH );
+		tempH = tempH + h;
+	}
+	cx.stroke(); 	
+}
+
+// A(x,y)
+//r - radius
+// angle
+// length to A
+function spiral( A_x, A_y, r , angle, l){
+
+    cx.beginPath();
+    cx.moveTo(A_x , A_y);
+    for (var i = 0; i < 400; i++) {
+      cx.lineTo(A_x + Math.cos(angle * i) * l * i ,
+                A_y + Math.sin(angle * i) * l * i);
+    }
+    cx.stroke();
+}
+
+
+// A(x,y)
+//r - radius
+// n - count of rays
+function star(A_x, A_y, r, n, angle) {
+    cx.beginPath();
+    cx.moveTo(A_x , A_y);
+    for (var i = 1; i <= n; i++) {
+      cx.quadraticCurveTo(A_x, A_y,
+                          A_x + Math.cos(angle * i) * r,
+                          A_y + Math.sin(angle * i) * r);
+    }
+    cx.fillStyle = "green";
+    cx.fill();
+  }
+
+ 
+</script>
