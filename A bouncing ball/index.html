@@ -1,0 +1,44 @@
+<!doctype html>
+<script src="15_game.js"></script>
+<script src="game_levels.js"></script>
+<script src="16_canvas.js"></script>
+
+<canvas width="700" height="700"></canvas>
+<script>
+ var cx = document.querySelector("canvas").getContext("2d");
+
+  var lastTime = null;
+  function frame(time) {
+    if (lastTime != null)
+      updateAnimation(Math.min(100, time - lastTime) / 1000);
+    lastTime = time;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  var x = 120   //A(x,y) - start dot of ball
+  var y = 120;  //A(x,y) - start dot of ball
+  var radius = 30; //- radius of ball
+  var stepX = 80; //move ball by X on each step
+  var stepY = 100; //move ball by Y on each step
+  
+  var ws = 700; //workingSpace
+
+  function updateAnimation(step) {
+ 
+    cx.clearRect(0, 0, ws, ws); //clear space
+    cx.strokeStyle = "red";
+    cx.strokeRect(0, 0, ws, ws);
+    x = x + step * stepX;
+    y = y + step * stepY;
+    if (x < 0 + radius || x > ws - radius){
+      stepX = -stepX;
+    }
+    if (y < 0 + radius || y > ws - radius){
+      stepY = -stepY;
+    }
+    cx.beginPath();
+    cx.arc(x, y, radius, 0, 7);
+    cx.fill();
+  } 
+</script>
