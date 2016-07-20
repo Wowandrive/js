@@ -1,0 +1,24 @@
+<!doctype html>
+
+<script>
+ 
+var typeList = ["text/plain", "text/html", "application/json", "application/rainbows+unicorns"];
+
+typeList.forEach(function(type) {
+  try {
+    doRequest(type)
+  } catch (e) {
+    console.log("Raised error: " + e);
+  }
+});
+
+function doRequest(typeName) {
+  var req = new XMLHttpRequest();
+  req.open("GET", "http://eloquentjavascript.net/author", false);
+  req.setRequestHeader("accept", typeName);
+  req.send(null);
+  console.log(typeName + ": \n" + req.responseText);
+}
+
+</script>
+
