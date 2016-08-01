@@ -1,0 +1,25 @@
+<!doctype html>
+<script src="promise.js"></script>
+
+<textarea id="code">return "hi";</textarea>
+<button id="button">Run</button>
+<pre id="output"></pre>
+
+<script>
+
+	var btnRun = document.querySelector("#button");
+//	var output = document.querySelector("#output");
+
+	btnRun.addEventListener("click", function() {
+    var txtCode = document.querySelector("#code").value;
+    var output = document.querySelector("#output");
+    try {
+      var solution = new Function(txtCode)();
+      output.textContent = String(solution);
+      //return  String(solution);
+    } catch (e) {
+      output.textContent = "Error: " + e;
+      //return "Error: " + e;
+    }
+  });
+</script>
