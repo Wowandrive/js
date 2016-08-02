@@ -1,0 +1,44 @@
+<!doctype html>
+<script src="promise.js"></script>
+
+<input type="text" id="field">
+<div id="suggestions" style="cursor: pointer"></div>
+
+<script>
+  	// Builds up an array with global variable names, like
+  	// 'alert', 'document', and 'scrollTo'
+  	var terms = [];
+  	for (var name in window){
+  		terms.push(name);
+  	}
+   
+	var text = document.querySelector("#field");
+  	var suggestions = document.querySelector("#suggestions");
+
+  	//main EventListener, calling after enter new char
+  	text.addEventListener("input", function(){
+  		//clear suggestions
+  		suggestions.textContent = ''
+
+  		//select only variables beginning from entered char
+  		var filteredVar = terms.filter(function(term){
+  			return term.indexOf(text.value) == 0;
+  		})
+
+  		//create updated 'suggestions'
+  		filteredVar.forEach(function(term){
+  			//create new suggestion
+  			var name = document.createElement('div');
+  			name.textContent = term;
+  			//add action 'click' to fill in field
+  			name.addEventListener("click", function(){
+  				text.value = term;
+  				suggestions.textContent = '';
+  			})
+  			//add suggestion to the list
+  			suggestions.appendChild(name);
+  		})
+  	})
+  
+  
+</script>
