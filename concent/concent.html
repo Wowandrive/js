@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta name="generator" content="olat-tinymce-4" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title></head><body><p>In preious chapters, there was an exercise was to make several requests to <a href="http://eloquentjavascript.net/author"><em>eloquentjavascript.net/author</em></a>, asking for different types of content by passing different <code>Accept</code> headers.</p>
+<p><a class="p_ident" id="p_FReC/gLaW+" href="http://eloquentjavascript.net/20_node.html#p_FReC/gLaW+"></a>Do this again, using Node&rsquo;s <code>http.request</code> function. Ask for at least the media types <code>text/plain</code>, <code>text/html</code>, and <code>application/json</code>. Remember that headers to a request can be given as an object, in the <code>headers</code> property of <code>http.request</code>&rsquo;s first argument.</p>
+<p><a class="p_ident" id="p_ZG9mFshMgi" href="http://eloquentjavascript.net/20_node.html#p_ZG9mFshMgi"></a>Write out the content of the responses to each request.</p>
+<div class="solution open">
+<div class="solution-text">
+<p><a class="p_ident" id="p_Hhj148ONNC" href="http://eloquentjavascript.net/20_node.html#p_Hhj148ONNC"></a>Don&rsquo;t forget to call the <code>end</code> method on the object returned by <code>http.request</code> in order to actually fire off the request.</p>
+<p><a class="p_ident" id="p_g86B/NOrvT" href="http://eloquentjavascript.net/20_node.html#p_g86B/NOrvT"></a>The response object passed to <code>http.request</code>&rsquo;s callback is a readable stream. This means that it is not entirely trivial to get the whole response body from it. The following utility function reads a whole stream and calls a callback function with the result, using the usual pattern of passing any errors it encounters as the first argument to the callback:</p>
+<pre class="snippet cm-s-default" data-language="text/javascript"><a class="c_ident" id="c_6U3GR/cEk1" href="http://eloquentjavascript.net/20_node.html#c_6U3GR/cEk1"></a><span class="cm-keyword">function</span> <span class="cm-variable">readStreamAsString</span>(<span class="cm-def">stream</span>, <span class="cm-def">callback</span>) {
+  <span class="cm-keyword">var</span> <span class="cm-def">data</span> <span class="cm-operator">=</span> <span class="cm-string">""</span>;
+  <span class="cm-variable-2">stream</span>.<span class="cm-property">on</span>(<span class="cm-string">"data"</span>, <span class="cm-keyword">function</span>(<span class="cm-def">chunk</span>) {
+    <span class="cm-variable-2">data</span> <span class="cm-operator">+=</span> <span class="cm-variable-2">chunk</span>.<span class="cm-property">toString</span>();
+  });
+  <span class="cm-variable-2">stream</span>.<span class="cm-property">on</span>(<span class="cm-string">"end"</span>, <span class="cm-keyword">function</span>() {
+    <span class="cm-variable-2">callback</span>(<span class="cm-atom">null</span>, <span class="cm-variable-2">data</span>);
+  });
+  <span class="cm-variable-2">stream</span>.<span class="cm-property">on</span>(<span class="cm-string">"error"</span>, <span class="cm-keyword">function</span>(<span class="cm-def">error</span>) {
+    <span class="cm-variable-2">callback</span>(<span class="cm-variable-2">error</span>);
+  });
+}</pre>
+</div>
+</div>
+<p></p>
+<p>You have to deliver the solution files to Git repository. You can use pre-defined unit tests located in test folder in your repository (you will need to change extension to.js in order to enable them)<br /><br />Ask your tutor if you have any questions.</p></body></html>
