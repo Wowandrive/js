@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta name="generator" content="olat-tinymce-4" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title></head><body><p>For easy remote access to some files, I might get into the habit of having the file server defined in this chapter running on my machine, in the <code>/home/marijn/public</code> directory. Then, one day, I find that someone has gained access to all the passwords I stored in my browser.</p>
+<p><a class="p_ident" id="p_dmHmWR/Zqs" href="http://eloquentjavascript.net/20_node.html#p_dmHmWR/Zqs"></a>What happened?</p>
+<p><a class="p_ident" id="p_DI3INnE8nA" href="http://eloquentjavascript.net/20_node.html#p_DI3INnE8nA"></a>If it isn&rsquo;t clear to you yet, think back to the <code>urlToPath</code> function, defined like this:</p>
+<pre class="snippet cm-s-default" data-language="javascript"><a class="c_ident" id="c_0wEX6AxULv" href="http://eloquentjavascript.net/20_node.html#c_0wEX6AxULv"></a><span class="cm-keyword">function</span> <span class="cm-variable">urlToPath</span>(<span class="cm-def">url</span>) {
+  <span class="cm-keyword">var</span> <span class="cm-def">path</span> <span class="cm-operator">=</span> <span class="cm-variable">require</span>(<span class="cm-string">"url"</span>).<span class="cm-property">parse</span>(<span class="cm-variable-2">url</span>).<span class="cm-property">pathname</span>;
+  <span class="cm-keyword">return</span> <span class="cm-string">"."</span> <span class="cm-operator">+</span> <span class="cm-variable">decodeURIComponent</span>(<span class="cm-variable-2">path</span>);
+}</pre>
+<p><a class="p_ident" id="p_mQL5b2p0bF" href="http://eloquentjavascript.net/20_node.html#p_mQL5b2p0bF"></a>Now consider the fact that paths passed to the <code>"fs"</code> functions can be relative&mdash;they may contain <code>"../"</code> to go up a directory. What happens when a client sends requests to URLs like the ones shown here?</p>
+<pre>http://myhostname:8000/../.config/config/google-chrome/Default/Web%20Data
+http://myhostname:8000/../.ssh/id_dsa
+http://myhostname:8000/../../../etc/passwd</pre>
+<p><a class="p_ident" id="p_kaATEvJoFT" href="http://eloquentjavascript.net/20_node.html#p_kaATEvJoFT"></a>Change <code>urlToPath</code> to fix this problem. Take into account the fact that Node on Windows allows both forward slashes and backslashes to separate directories.</p>
+<p><a class="p_ident" id="p_N2cR0sagWP" href="http://eloquentjavascript.net/20_node.html#p_N2cR0sagWP"></a>Also, meditate on the fact that as soon as you expose some half-baked system on the Internet, the bugs in that system might be used to do bad things to your machine.</p>
+<p></p>
+<p>You have to deliver the solution files to Git repository. You can use pre-defined unit tests located in test folder in your repository (you will need to change extension to.js in order to enable them)<br /><br />Ask your tutor if you have any questions.</p></body></html>
