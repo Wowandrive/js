@@ -1,0 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta name="generator" content="olat-tinymce-4" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title></head><body><p>Though the <code>DELETE</code> method is wired up to delete directories (using <code>fs.rmdir</code>), the file server currently does not provide any way to <em>create</em> a directory.</p>
+<p><a class="p_ident" id="p_6UFSFAp8Vj" href="http://eloquentjavascript.net/20_node.html#p_6UFSFAp8Vj"></a>Add support for a method <code>MKCOL</code>, which should create a directory by calling <code>fs.mkdir</code>. <code>MKCOL</code> is not one of the basic HTTP methods, but it does exist, for this same purpose, in the <em>WebDAV</em> standard, which specifies a set of extensions to HTTP, making it suitable for writing resources, not just reading them.</p>
+<div class="solution open">
+<div class="solution-text b_info">
+<p>Hint: You can use the function that implements the <code>DELETE</code> method as a blueprint for the <code>MKCOL</code> method. When no file is found, try to create a directory with <code>fs.mkdir</code>. When a directory exists at that path, you can return a 204 response so that directory creation requests are idempotent. If a nondirectory file exists here, return an error code. The code 400 (&ldquo;bad request&rdquo;) would be appropriate here.</p>
+</div>
+</div>
+<p></p>
+<p>You have to deliver the solution files to Git repository. You can use pre-defined unit tests located in test folder in your repository (you will need to change extension to.js in order to enable them)<br /><br />Ask your tutor if you have any questions.</p></body></html>
