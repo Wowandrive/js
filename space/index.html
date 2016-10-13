@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	</head>
+<body>
+	<div>
+	  <b>Choose file to edit: </b>
+	  <select id = "fileList" onchange = "loadCurrentFile()"></select>
+	  <button onclick="editMode()" id = "editBtn">Edit</button>
+	  <button onclick="saveChanges()" id = "saveBtn">Save</button>
+	</div>
+	<textarea id = "textId" style="width: 70%; height: 300px"></textarea>
+	<script type="text/javascript" src="actions.js"></script>
+</body>
+</html>
